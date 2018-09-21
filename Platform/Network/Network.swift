@@ -21,7 +21,10 @@ protocol NetworkType {
 
 // MARK: - NetworkType
 
-struct Network<Entity> : NetworkType {
+struct Network<Entity> {
+}
+
+extension  Network : NetworkType {
     func fetch(parameters: [String: Any]?) -> Observable<[Entity]> {
         fatalError()
     }

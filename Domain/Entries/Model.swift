@@ -10,8 +10,8 @@ import Foundation
 
 // MARK: - Model
 
-struct Model {
-    let property: String
+public struct Model {
+    public let property: String
 }
 
 // MARK: - Equatable
