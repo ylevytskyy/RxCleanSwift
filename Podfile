@@ -2,6 +2,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 def common
+    pod 'IQKeyboardManagerSwift', '~> 5.0.8'
     pod 'ObjectMapper', '~> 3.3'
     pod 'Curry', '~> 4.0'
     pod 'QorumLogs', '~> 0.9'
@@ -9,6 +10,7 @@ def common
     pod 'RxSwift', '~> 4.3'
     pod 'RxSwiftExt', '~> 3.3'
     pod 'RxCocoa', '~> 4.3'
+    pod 'RxFlow', '~> 1.5'
 end
 
 def test

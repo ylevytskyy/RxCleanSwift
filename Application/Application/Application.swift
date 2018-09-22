@@ -9,6 +9,9 @@
 import UIKit
 import QorumLogs
 import Swinject
+import IQKeyboardManagerSwift
+import RxSwift
+import RxFlow
 
 // MARK: -  Dependency Injection Container
 
@@ -23,13 +26,14 @@ final class Application {
     
     /// Dependency Injection Container
     let container = Container() { container in
-        container.register(MainNavigatorType.self) { _ in
-            MainNavigator()
-        }
+        // TODO:
     }
+    
+    private let coordinator = Coordinator()
     
     private init() {
         QorumLogs.enabled = true
+        IQKeyboardManager.sharedManager().enable = true
     }
 }
 
@@ -37,10 +41,12 @@ final class Application {
 
 extension Application {
     func configureMainInterface(in window: UIWindow) {
-        let navigator = dependencyContainer().resolve(MainNavigatorType.self)!
+        // Configure navigator
+        let flow = LoginFlow(window: window)
+        Flows.whenReady(flows: [flow]) { root in
+            window.rootViewController = root.first!
+        }
         
-        window.rootViewController = navigator.navigationController
-        
-        _ = navigator.toMain()
+        coordinator.coordinate(flow: flow, withStepper: OneStepper(withSingleStep: Step.login))
     }
 }
