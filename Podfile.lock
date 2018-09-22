@@ -1,4 +1,5 @@
 PODS:
+  - Curry (4.0.0)
   - ObjectMapper (3.3.0)
   - QorumLogs (0.9)
   - RxBlocking (4.3.0):
@@ -15,6 +16,7 @@ PODS:
   - Swinject (2.5.0)
 
 DEPENDENCIES:
+  - Curry (~> 4.0)
   - ObjectMapper (~> 3.3)
   - QorumLogs (~> 0.9)
   - RxBlocking (~> 4.3)
@@ -25,6 +27,7 @@ DEPENDENCIES:
   - Swinject (~> 2.5)
 
 SPEC CHECKSUMS:
+  Curry: 887c0b9de9a9947820a59557459c7895e76d7b90
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   QorumLogs: 9a484df6973a3697ac79fe2273140fde6b36dccc
   RxBlocking: ab8b3ac2aa5d030146fe3a3e7916d8efa202beae
@@ -34,6 +37,6 @@ SPEC CHECKSUMS:
   RxTest: 831444848ac3c5efdd7d80ff5dc4b50ba08877a9
   Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
 
-PODFILE CHECKSUM: 50834eda7113eee4dcc8df3e20f3e74f5de8cf8e
+PODFILE CHECKSUM: 2ab58b42661270c1286e32b29e2cd21a766c9b6e
 
 COCOAPODS: 1.4.0

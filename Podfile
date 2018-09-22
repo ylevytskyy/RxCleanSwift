@@ -3,6 +3,7 @@ use_frameworks!
 
 def common
     pod 'ObjectMapper', '~> 3.3'
+    pod 'Curry', '~> 4.0'
     pod 'QorumLogs', '~> 0.9'
     pod 'Swinject', '~> 2.5'
     pod 'RxSwift', '~> 4.3'
