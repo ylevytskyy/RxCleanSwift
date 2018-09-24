@@ -38,6 +38,8 @@ extension LoginFlow : Flow {
             return navigateToLoginScreen()
         case .main:
             return navigateToMainScreen()
+        default:
+            return .none
         }
     }
 }
@@ -47,16 +49,18 @@ extension LoginFlow : Flow {
 extension LoginFlow {
     private func navigateToLoginScreen () -> NextFlowItems {
         // Navigate screens
-        (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController = viewController
+        self.window.rootViewController = viewController
         // Next flow item
         return NextFlowItems.one(flowItem: NextFlowItem(nextPresentable: viewController, nextStepper: viewController))
     }
 
     private func navigateToMainScreen () -> NextFlowItems {
         // Navigate screens
-        let mainFlow = MainFlow(window: window)
-        (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController = mainFlow.root as? UIViewController
+        let flow = MainFlow(window: window)
+        Flows.whenReady(flow1: flow) { [unowned self] root in
+            self.window.rootViewController = root
+        }
         // Next flow item
-        return NextFlowItems.one(flowItem: NextFlowItem(nextPresentable: mainFlow, nextStepper: mainFlow.root as! Stepper))
+        return NextFlowItems.one(flowItem: NextFlowItem(nextPresentable: flow, nextStepper: OneStepper(withSingleStep: Step.main)))
     }
 }

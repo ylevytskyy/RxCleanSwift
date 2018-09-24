@@ -43,8 +43,8 @@ extension Application {
     func configureMainInterface(in window: UIWindow) {
         // Configure navigator
         let flow = LoginFlow(window: window)
-        Flows.whenReady(flows: [flow]) { root in
-            window.rootViewController = root.first!
+        Flows.whenReady(flow1: flow) { root in
+            window.rootViewController = root
         }
         
         coordinator.coordinate(flow: flow, withStepper: OneStepper(withSingleStep: Step.login))

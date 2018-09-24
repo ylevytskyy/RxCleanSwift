@@ -34,12 +34,7 @@ extension LoginViewModel: ViewModelType {
     // MARK: - transform
     func transform(input: Input) -> Output {
         let stepper = input.loginTrigger
-            .debug("login", trimOutput: true)
-            .withLatestFrom(Driver.combineLatest(input.username, input.password))
-            .debug("u&p", trimOutput: true)
-//            .filter { $0.0 != nil && $0.1 != nil}
             .map { _ in Step.main as RxFlow.Step }
-            .debug("step", trimOutput: true)
         
         return Output(
             stepper:stepper)

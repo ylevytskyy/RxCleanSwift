@@ -47,15 +47,17 @@ extension MainFlow : Flow {
 extension MainFlow {
     private func navigateToLoginScreen () -> NextFlowItems {
         // Navigate screens
-        let loginFlow = LoginFlow(window: window)
-        (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController = loginFlow.root as? UIViewController
+        let flow = LoginFlow(window: window)
+        Flows.whenReady(flow1: flow) { [unowned self] root in
+            self.window.rootViewController = root
+        }
         // Next flow item
-        return NextFlowItems.one(flowItem: NextFlowItem(nextPresentable: loginFlow, nextStepper: loginFlow.root as! Stepper))
+        return NextFlowItems.one(flowItem: NextFlowItem(nextPresentable: flow, nextStepper: OneStepper(withSingleStep: Step.login)))
     }
     
     private func navigateToMainScreen () -> NextFlowItems {
         // Navigate screens
-        (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController = viewController
+        self.window.rootViewController = viewController
         // Next flow item
         return NextFlowItems.one(flowItem: NextFlowItem(nextPresentable: viewController, nextStepper: viewController))
     }
